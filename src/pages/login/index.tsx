@@ -1,6 +1,32 @@
-import { Link } from 'react-router-dom';
+import { FormEvent, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Input } from '../../components/input';
 
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../services/firebaseConnection';
 export function Login () {
+    const [email, setEmail] =useState('');
+    const [password, setPassword] =useState('');
+    const navigate = useNavigate();
+
+    function handleSubmit(event: FormEvent): void {
+        event.preventDefault();
+        if(email === '' || password === '') {
+            alert('Preencha todos os campos');
+            return;
+        }
+        signInWithEmailAndPassword(auth,email,password)
+        .then(() => {
+            navigate('/admin', {replace: true});
+        })
+        .catch((error) => {
+            console.error('Error signing in with email and password:', error);
+            alert('Falha ao logar');
+        });
+        console.log(
+            `Email: ${email}, Senha: ${password}`
+        )
+    }
 
     return(
         <div className="flex w-full h-screen items-center justify-center flex-col">
@@ -9,15 +35,24 @@ export function Login () {
                     <span className='bg-gradient-to-r from-yellow-500 to-orange-400 bg-clip-text text-transparent' >Link</span>
                 </h1>
             </Link>
-            <form>
-               
-                <input type="email" id="email" name="email" placeholder='Digite seu email' required />
-                <br/>
-               
-                <input type="password" id="password" name="password" placeholder='**********' required />
-                <br/>
-               
-                <input type="submit" value="Acessar" />
+            <form  onSubmit={handleSubmit} className='w-full max-w-xl flex flex-col px-1'>
+                 <Input
+                    placeholder='Digite o seu email'
+                    type='email'
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                 />
+                 <Input
+                    placeholder='*********'
+                    type='password'
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                 />
+                <button  type='submit' className='h-9 bg-blue-600 border-0 text-lg font-medium text-white'>
+                    Acessar
+                </button>
             </form>
            
         </div>
