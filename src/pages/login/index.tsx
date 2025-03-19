@@ -1,20 +1,25 @@
-
+import { Link } from 'react-router-dom';
 
 export function Login () {
 
     return(
-        <div>
-            <h1>Login Page</h1>
+        <div className="flex w-full h-screen items-center justify-center flex-col">
+            <Link to="/">
+                <h1 className='mt-11 text-white mb-7 font-bold text-5xl'> Dev
+                    <span className='bg-gradient-to-r from-yellow-500 to-orange-400 bg-clip-text text-transparent' >Link</span>
+                </h1>
+            </Link>
             <form>
-                <label >Username:</label>
-                <input type="text" id="username" name="username" required />
+               
+                <input type="email" id="email" name="email" placeholder='Digite seu email' required />
                 <br/>
-                <label >Password:</label>
-                <input type="password" id="password" name="password" required />
+               
+                <input type="password" id="password" name="password" placeholder='**********' required />
                 <br/>
-                <input type="submit" value="Submit" />
+               
+                <input type="submit" value="Acessar" />
             </form>
-            <a href="/register">Register</a>
+           
         </div>
     )
 }

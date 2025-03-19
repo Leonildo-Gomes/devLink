@@ -1,7 +1,7 @@
+@import "tailwindcss";
 
+body {
+    min-height: 100vh;
+    background: linear-gradient(#232630, #050507)
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
 }
