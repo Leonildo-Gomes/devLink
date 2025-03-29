@@ -21,10 +21,10 @@ export function Header() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/login">Login</Link>
+            <Link to="/admin">Links</Link>
           </li>
           <li>
-            <Link to="/login">Redes Sociais</Link>
+            <Link to="/admin/social">Redes Sociais</Link>
           </li>
         </ul>
 

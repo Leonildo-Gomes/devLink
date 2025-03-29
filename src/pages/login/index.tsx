@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Input } from '../../components/input';
 
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { toast } from 'react-toastify';
 import { auth } from '../../services/firebaseConnection';
 export function Login () {
     const [email, setEmail] =useState('');
@@ -12,7 +13,7 @@ export function Login () {
     function handleSubmit(event: FormEvent): void {
         event.preventDefault();
         if(email === '' || password === '') {
-            alert('Preencha todos os campos');
+            toast.warning('Preencha todos os campos');
             return;
         }
         signInWithEmailAndPassword(auth,email,password)
@@ -21,11 +22,8 @@ export function Login () {
         })
         .catch((error) => {
             console.error('Error signing in with email and password:', error);
-            alert('Falha ao logar');
+            toast.error('Falha ao logar');
         });
-        console.log(
-            `Email: ${email}, Senha: ${password}`
-        )
     }
 
     return(

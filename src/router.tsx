@@ -11,7 +11,7 @@ import { Private } from './routes/Private';
                 { path: '/', element: <Home/>},
                 { path: '/login', element: <Login/>},
                 { path: '/admin', element: <Private> <Admin/></Private>},
-                { path: '/admin/social', element: <Networks/>},
+                { path: '/admin/social', element: <Private> <Networks/> </Private>},
             ],
         },
        
