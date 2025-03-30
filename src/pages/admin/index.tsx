@@ -28,8 +28,8 @@ export function Admin() {
 
     useEffect(() => {
         async function loadLinks() {
-            const linksRef= collection(db,"links");
-            const queyRef=query(linksRef,orderBy("created", "asc"));
+            // collection é a referencia a coleção no firestore
+            const queyRef=query(collection(db,"links"),orderBy("created", "asc"));
             // onshapshot é listeners pegar os dados todas vez que atualizar dados na Bd
             const unsub= onSnapshot(
                 queyRef,(snapshot)=>{
@@ -48,7 +48,7 @@ export function Admin() {
                     console.log(listaLink);
                 }
            );
-           // serve  para remover esse listener  quando fexchar a componente
+           // serve  para remover esse listener  quando fechar a componente
            return () => unsub(); // unsubscribe on unmount
         }
         loadLinks();
@@ -170,7 +170,8 @@ export function Admin() {
                     <div>
                         <button className= 'border border-dashed p-1 rounded '
                             onClick = {() => handleDeleteLink(item.id)}
-                        >
+                        >  
+                        
                             <FiTrash size={18} color='#FFF'/>
                             
                         </button>
