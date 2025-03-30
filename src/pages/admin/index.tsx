@@ -8,7 +8,7 @@ import { Input } from '../../components/input';
 import { db } from '../../services/firebaseConnection';
 
 
-interface LinkProps{
+ export interface LinkProps{
     id: string;
     name: string;
     url: string;
