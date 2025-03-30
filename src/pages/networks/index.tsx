@@ -14,7 +14,6 @@ export function Networks() {
     const [instagram, setInstagram] = useState(""); 
     const [youtube, setYoutube] = useState(""); 
    
-
     useEffect(() => {
         function loadSocials() {
             const docRef = doc(db,colectionName, docName);
